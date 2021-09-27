@@ -24,10 +24,10 @@ public class ImoveisCadastrados {
     public void adicionarImovel (Imovel adicionarImovel){
         imoveis.add(adicionarImovel);
     }
-
     public void mostrarTodosOsImoveis(){
         for (Imovel referencia : imoveis){
             System.out.println(referencia.getMoradores());
         }
     }
+
 }

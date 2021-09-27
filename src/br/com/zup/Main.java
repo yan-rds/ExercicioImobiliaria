@@ -34,7 +34,7 @@ public class Main {
         System.out.println("Qual é o valor do aluguel?");
         double leitorAluguel = leitor.nextDouble();
         imovel.definirValorAluguel(leitorAluguel);
-        imovel.mostrarDados();
+        System.out.println(imovel);
 
 
     }

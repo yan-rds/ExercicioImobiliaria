@@ -58,12 +58,26 @@ public class Imovel {
             System.out.println(referencia.getNome());
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder concatenador = new StringBuilder();
+        concatenador.append("A respeito do imóvel localizado no endereço " + endereco + ", suas informações são:\n");
+        concatenador.append("Funcionário da imobiliária responsável: " + funcionarioResponsavel.getNome());
+        concatenador.append("\nValor do aluguel: "+ valorAluguel);
+        concatenador.append("\nResidentes atuais:" + getMoradores().toString());
+        return concatenador.toString();
+
+    }
+
+    /*
+    Método antigo
     public void mostrarDados (){
         System.out.println("A respeito do imóvel localizado no endereço " + endereco + ", suas informações são:");
         System.out.println("Funcionário da imobiliária responsável: " + funcionarioResponsavel.getNome());
         System.out.println("Valor do aluguel: "+ valorAluguel);
         System.out.println("Residentes atuais:");
         mostrarMoradores();
-    }
+    }*/
 
 }
