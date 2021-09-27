@@ -1,4 +1,5 @@
 package br.com.zup;
 
-public class Funcionario {
+public class Funcionario extends Pessoa {
+
 }

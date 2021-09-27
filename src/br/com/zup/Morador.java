@@ -1,6 +1,6 @@
 package br.com.zup;
 
-public class Morador {
+public class Morador extends Pessoa{
 
 }
 
