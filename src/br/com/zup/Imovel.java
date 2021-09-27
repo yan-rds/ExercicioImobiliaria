@@ -9,6 +9,9 @@ public class Imovel {
     private List <Morador> moradores = new ArrayList<>();
     private Funcionario funcionarioResponsavel;
 
+    public Imovel() {
+    }
+
     public Imovel(String endereco, double valorAluguel) {
         this.endereco = endereco;
         this.valorAluguel = valorAluguel;
@@ -62,10 +65,12 @@ public class Imovel {
     @Override
     public String toString() {
         StringBuilder concatenador = new StringBuilder();
-        concatenador.append("A respeito do imóvel localizado no endereço " + endereco + ", suas informações são:\n");
+        concatenador.append("\tA respeito do imóvel localizado no endereço " + endereco);
+        concatenador.append(", suas informações são:\n");
         concatenador.append("Funcionário da imobiliária responsável: " + funcionarioResponsavel.getNome());
-        concatenador.append("\nValor do aluguel: "+ valorAluguel);
+        concatenador.append("\nValor do aluguel: R$ "+ valorAluguel);
         concatenador.append("\nResidentes atuais:" + getMoradores().toString());
+        concatenador.append("\n");
         return concatenador.toString();
 
     }
