@@ -36,6 +36,11 @@ public class Main {
         imovel.definirValorAluguel(leitorAluguel);
         System.out.println(imovel);
 
+        // Cadastrando imóveis na imobiliária
+        imobiliaria.adicionarImovel(imovel);
+
+        System.out.println(imobiliaria.toString());
+
 
     }
 }

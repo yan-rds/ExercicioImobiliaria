@@ -26,8 +26,15 @@ public class ImoveisCadastrados {
     }
     public void mostrarTodosOsImoveis(){
         for (Imovel referencia : imoveis){
-            System.out.println(referencia.getMoradores());
+            System.out.println(referencia.toString());
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder concatenador = new StringBuilder();
+        concatenador.append("Lista de imóveis cadastrados:\n");
+        concatenador.append("\n" + imoveis.toString());
+        return concatenador.toString();
+    }
 }
