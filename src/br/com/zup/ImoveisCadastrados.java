@@ -6,6 +6,9 @@ import java.util.List;
 public class ImoveisCadastrados {
     private List <Imovel> imoveis = new ArrayList<>();
 
+    public ImoveisCadastrados() {
+    }
+
     public ImoveisCadastrados(List<Imovel> imoveis) {
         this.imoveis = imoveis;
     }
@@ -24,7 +27,7 @@ public class ImoveisCadastrados {
 
     public void mostrarTodosOsImoveis(){
         for (Imovel referencia : imoveis){
-            referencia.mostrarDados();
+            System.out.println(referencia.getMoradores());
         }
     }
 }

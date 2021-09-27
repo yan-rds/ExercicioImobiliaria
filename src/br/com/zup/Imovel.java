@@ -55,7 +55,7 @@ public class Imovel {
     }
     public void mostrarMoradores (){
         for (Morador referencia : moradores){
-            System.out.println(referencia.getNome()+"\n");
+            System.out.println(referencia.getNome());
         }
     }
     public void mostrarDados (){
