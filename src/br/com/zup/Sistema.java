@@ -54,7 +54,7 @@ public class Sistema {
         while (loopListaMorador){
             loopListaMorador = false;
             listaDeMoradores.add(instanciarMorador());
-            String repetirCadastroMorador = capturador("Digite 'cadastro' para cadastrar um novo morador").nextLine();
+            String repetirCadastroMorador = capturador("Digite 'cadastro' para cadastrar um novo morador, do contrário, digite 'sair'").nextLine();
             if (repetirCadastroMorador.equalsIgnoreCase("cadastro")){
                 loopListaMorador = true;
             }
@@ -74,6 +74,8 @@ public class Sistema {
 
     public static Imovel cadastrarImovel(){
         Imovel novoImovel = new Imovel();
+        List<Morador> resetarLista = new ArrayList<>();
+        listaDeMoradores = resetarLista;
         novoImovel.definirEndereco(endereco());
         novoImovel.adicionarFuncionario(instanciarFuncionario());
         novoImovel.setMoradores(atualizarListaDeMoradores());
@@ -99,11 +101,9 @@ public class Sistema {
 
 
     public static void executarSistema() {
-        boolean loopMorador = true;
         boolean loopMenu = true;
 
         while (loopMenu) {
-
             switch (MenuInicial()) {
                 case 1:
                     imobiliaria.adicionarImovel(cadastrarImovel());
