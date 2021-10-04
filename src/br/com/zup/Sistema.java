@@ -81,8 +81,24 @@ public class Sistema {
         return novoImovel;
     }
 
+    public static void removerMorador(){
+        String enderecoImovel = capturador("Qual é o endereço do imóvel").nextLine();
+        String cpfRemovido = capturador("Qual é o CPF do morador a ser removido").nextLine();
+        Morador excluido = null;
+        for (Imovel referencia : imobiliaria.getImoveis()){
+            if (enderecoImovel.equalsIgnoreCase(referencia.getEndereco())){
+                for (Morador referenciaMorador : referencia.getMoradores()){
+                    if (cpfRemovido.equalsIgnoreCase(referenciaMorador.getCpf())){
+                        excluido = referenciaMorador;
+                    }
+                }
+            }
+            referencia.getMoradores().remove(excluido);
+        }
+    }
 
-    /*public static void executarSistema() {
+
+    public static void executarSistema() {
         boolean loopMorador = true;
         boolean loopMenu = true;
 
@@ -96,28 +112,14 @@ public class Sistema {
                     System.out.println(imobiliaria);
                     break;
                 case 3:
-                    System.out.println("Qual é o endereço do imóvel?");
-                    leitor.nextLine();
-                    String enderecoImovel = leitor.nextLine();
-                    System.out.println("Qual é o cpf do morador?");
-                    String cpfRemover = leitor.nextLine();
-                    Morador excluido = null;
-                    for (Imovel referencia : imobiliaria.getImoveis()){
-                        if (enderecoImovel.equalsIgnoreCase(referencia.getEndereco())){
-                            for (Morador referenciaMorador : referencia.getMoradores()){
-                                if (cpfRemover.equalsIgnoreCase(referenciaMorador.getCpf())){
-                                    excluido = referenciaMorador;
-                                }
-                            }
-                        }
-                        referencia.getMoradores().remove(excluido);
-                    }
+                    removerMorador();
                     break;
                 case 4:
                     loopMenu = false;
             }
         }
     }
-*/}
+
+}
 
 
