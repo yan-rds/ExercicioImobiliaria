@@ -21,49 +21,10 @@ public class Main {
             switch (escolhaMenu) {
                 case 1:
                     // Cadastrar imóvel
-                    Imovel novoImovel = new Imovel();
-                    System.out.println("Qual é o endereço do imóvel?");
-                    leitor.nextLine();
-                    String leitorEndereco = leitor.nextLine();
-                    novoImovel.definirEndereco(leitorEndereco);
-
-                    System.out.println("Qual é o nome do funcionário responsável?");
-                    String leitorFuncionario = leitor.nextLine();
-                    Funcionario novoFuncionario = new Funcionario(leitorFuncionario);
-                    novoImovel.adicionarFuncionario(novoFuncionario);
-
-                    while (loopMorador) {
-                        System.out.println("Digite o nome dos moradores, ao terminar digite Sair");
-                        String leitorMorador = leitor.nextLine();
-                        if (leitorMorador.equalsIgnoreCase("Sair")) {
-                            loopMorador = false;
-                        } else {
-                            System.out.println("Digite o cpf deste morador");
-                            String leitorCpf = leitor.nextLine();
-                            boolean cpfRepetido = false;
-                            for (Morador referencia : novoImovel.getMoradores()){
-                                if (leitorCpf.equalsIgnoreCase(referencia.getCpf())){
-                                    System.out.println("CPF repetido, morador não cadastrado");
-                                    cpfRepetido = true;
-                                }
-                            }
-                            if (!cpfRepetido) {
-                                Morador Novomorador = new Morador(leitorMorador, leitorCpf);
-                                novoImovel.adicionarMorador(Novomorador);
-                                System.out.println("morador adicionado " + Novomorador.getNome());
-                            }
-                        }
-                    }
-                    loopMorador = true;
-                    System.out.println("Qual é o valor do aluguel?");
-                    double leitorAluguel = leitor.nextDouble();
-                    novoImovel.definirValorAluguel(leitorAluguel);
-                    System.out.println("Imóvel cadastrado: ");
-                    System.out.println(novoImovel);
-                    imobiliaria.adicionarImovel(novoImovel);
+                    Sistema.imobiliaria.adicionarImovel(Sistema.cadastrarImovel());
                     break;
                 case 2:
-                    System.out.println(imobiliaria);
+                    System.out.println(Sistema.imobiliaria);
                     break;
                 case 3:
                     System.out.println("Qual é o endereço do imóvel?");

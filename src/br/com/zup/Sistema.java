@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class Sistema {
 
+    static List<Morador> listaDeMoradores = new ArrayList<>();
+    static ImoveisCadastrados imobiliaria = new ImoveisCadastrados();
+
     private static Scanner capturador (String mensagem){
         System.out.println(mensagem);
         return new Scanner(System.in);
@@ -21,13 +24,6 @@ public class Sistema {
         return escolha;
     }
 
-    public static Imovel instanciarImovel(){
-        Imovel novoImovel = new Imovel();
-        String leitorEndereco = capturador("Qual é o endereço do imóvel?").nextLine();
-        novoImovel.definirEndereco(leitorEndereco);
-
-        return novoImovel;
-    }
 
     public static Funcionario instanciarFuncionario(){
         String leitorFuncionario = capturador("Qual é o nome do funcionário responsável?").nextLine();
@@ -38,29 +34,55 @@ public class Sistema {
     public static Morador instanciarMorador(){
         String leitorMorador = capturador("Digite o nome do morador").nextLine();
         String leitorCpf = capturador("Digite o CPF deste morador").nextLine();
-        Morador novoMorador = new Morador(leitorMorador, leitorCpf);
+        Morador novoMorador = new Morador();
+        boolean cpfRepetido = false;
+        for (Morador referencia : listaDeMoradores){
+            if (leitorCpf.equalsIgnoreCase(referencia.getCpf())){
+                System.out.println("CPF repetido, morador não cadastrado");
+                cpfRepetido = true;
+            }
+        }
+        if (!cpfRepetido) {
+            novoMorador.setNome(leitorMorador);
+            novoMorador.setCpf(leitorCpf);
+        }
         return novoMorador;
     }
 
-    public static List<Morador> listaDeMoradores(){
+    public static List<Morador> atualizarListaDeMoradores(){
         boolean loopListaMorador = true;
-        List<Morador> novaLista = new ArrayList<>();
         while (loopListaMorador){
             loopListaMorador = false;
-            novaLista.add(instanciarMorador());
+            listaDeMoradores.add(instanciarMorador());
             String repetirCadastroMorador = capturador("Digite 'cadastro' para cadastrar um novo morador").nextLine();
             if (repetirCadastroMorador.equalsIgnoreCase("cadastro")){
                 loopListaMorador = true;
             }
         }
-        return novaLista;
+        return listaDeMoradores;
+    }
+
+    public static double aluguel(){
+        double leitorAluguel = capturador("Qual é o valor do aluguel?").nextDouble();
+        return leitorAluguel;
+    }
+
+    public static String endereco(){
+        String leitorEndereco = capturador("Em qual endereço esse imóvel se localiza?").nextLine();
+        return leitorEndereco;
+    }
+
+    public static Imovel cadastrarImovel(){
+        Imovel novoImovel = new Imovel();
+        novoImovel.definirEndereco(endereco());
+        novoImovel.adicionarFuncionario(instanciarFuncionario());
+        novoImovel.setMoradores(atualizarListaDeMoradores());
+        novoImovel.definirValorAluguel(aluguel());
+        return novoImovel;
     }
 
 
-    public static void executarSistema() {
-        Scanner leitor = new Scanner(System.in);
-        ImoveisCadastrados imobiliaria = new ImoveisCadastrados();
-
+    /*public static void executarSistema() {
         boolean loopMorador = true;
         boolean loopMenu = true;
 
@@ -68,49 +90,7 @@ public class Sistema {
 
             switch (MenuInicial()) {
                 case 1:
-                    // Cadastrar imóvel
-                   /*
-                    Imovel novoImovel = new Imovel();
-                    System.out.println("Qual é o endereço do imóvel?");
-                    leitor.nextLine();
-                    String leitorEndereco = leitor.nextLine();
-                    novoImovel.definirEndereco(leitorEndereco);
-
-                    System.out.println("Qual é o nome do funcionário responsável?");
-                    String leitorFuncionario = leitor.nextLine();
-                    Funcionario novoFuncionario = new Funcionario(leitorFuncionario);
-                    novoImovel.adicionarFuncionario(novoFuncionario);
-                    */
-
-                    while (loopMorador) {
-                        System.out.println("Digite o nome dos moradores, ao terminar digite Sair");
-                        String leitorMorador = leitor.nextLine();
-                        if (leitorMorador.equalsIgnoreCase("Sair")) {
-                            loopMorador = false;
-                        } else {
-                            System.out.println("Digite o cpf deste morador");
-                            String leitorCpf = leitor.nextLine();
-                            boolean cpfRepetido = false;
-                            for (Morador referencia : novoImovel.getMoradores()){
-                                if (leitorCpf.equalsIgnoreCase(referencia.getCpf())){
-                                    System.out.println("CPF repetido, morador não cadastrado");
-                                    cpfRepetido = true;
-                                }
-                            }
-                            if (!cpfRepetido) {
-                                Morador Novomorador = new Morador(leitorMorador, leitorCpf);
-                                novoImovel.adicionarMorador(Novomorador);
-                                System.out.println("morador adicionado " + Novomorador.getNome());
-                            }
-                        }
-                    }
-                    loopMorador = true;
-                    System.out.println("Qual é o valor do aluguel?");
-                    double leitorAluguel = leitor.nextDouble();
-                    novoImovel.definirValorAluguel(leitorAluguel);
-                    System.out.println("Imóvel cadastrado: ");
-                    System.out.println(novoImovel);
-                    imobiliaria.adicionarImovel(novoImovel);
+                    imobiliaria.adicionarImovel(cadastrarImovel());
                     break;
                 case 2:
                     System.out.println(imobiliaria);
@@ -138,6 +118,6 @@ public class Sistema {
             }
         }
     }
-}
+*/}
 
 
