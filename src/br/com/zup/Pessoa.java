@@ -1,7 +1,21 @@
 package br.com.zup;
 
-public class Pessoa {
+public abstract class Pessoa {
     private String nome;
+    private String cpf;
+
+    public Pessoa(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public Pessoa() {
     }
@@ -20,6 +34,9 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "\tNome: " +getNome();
+        StringBuilder concatenador = new StringBuilder();
+        concatenador.append("\t|\tNome: " + getNome());
+        concatenador.append("\t-\tCpf: " + getCpf());
+        return concatenador.toString();
     }
 }

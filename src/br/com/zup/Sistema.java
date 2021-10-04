@@ -1,10 +1,63 @@
 package br.com.zup;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class Sistema {
 
-    public static void main(String[] args) {
+    private static Scanner capturador (String mensagem){
+        System.out.println(mensagem);
+        return new Scanner(System.in);
+    }
+
+    public static int MenuInicial() {
+        System.out.println("Sistema Imobiliário");
+        System.out.println("Digite 1 para cadastrar um novo imóvel");
+        System.out.println("Digite 2 para exibir todos os imóveis cadastrados");
+        System.out.println("Digite 3 para remover um morador");
+        int escolha = capturador("Digite 4 para sair").nextInt();
+
+        return escolha;
+    }
+
+    public static Imovel instanciarImovel(){
+        Imovel novoImovel = new Imovel();
+        String leitorEndereco = capturador("Qual é o endereço do imóvel?").nextLine();
+        novoImovel.definirEndereco(leitorEndereco);
+
+        return novoImovel;
+    }
+
+    public static Funcionario instanciarFuncionario(){
+        String leitorFuncionario = capturador("Qual é o nome do funcionário responsável?").nextLine();
+        Funcionario novoFuncionario = new Funcionario(leitorFuncionario);
+        return novoFuncionario;
+    }
+
+    public static Morador instanciarMorador(){
+        String leitorMorador = capturador("Digite o nome do morador").nextLine();
+        String leitorCpf = capturador("Digite o CPF deste morador").nextLine();
+        Morador novoMorador = new Morador(leitorMorador, leitorCpf);
+        return novoMorador;
+    }
+
+    public static List<Morador> listaDeMoradores(){
+        boolean loopListaMorador = true;
+        List<Morador> novaLista = new ArrayList<>();
+        while (loopListaMorador){
+            loopListaMorador = false;
+            novaLista.add(instanciarMorador());
+            String repetirCadastroMorador = capturador("Digite 'cadastro' para cadastrar um novo morador").nextLine();
+            if (repetirCadastroMorador.equalsIgnoreCase("cadastro")){
+                loopListaMorador = true;
+            }
+        }
+        return novaLista;
+    }
+
+
+    public static void executarSistema() {
         Scanner leitor = new Scanner(System.in);
         ImoveisCadastrados imobiliaria = new ImoveisCadastrados();
 
@@ -12,15 +65,11 @@ public class Main {
         boolean loopMenu = true;
 
         while (loopMenu) {
-            System.out.println("Sistema Imobiliário");
-            System.out.println("Digite 1 para cadastrar um novo imóvel");
-            System.out.println("Digite 2 para exibir todos os imóveis cadastrados");
-            System.out.println("Digite 3 para remover um morador");
-            System.out.println("Digite 4 para sair");
-            int escolhaMenu = leitor.nextInt();
-            switch (escolhaMenu) {
+
+            switch (MenuInicial()) {
                 case 1:
                     // Cadastrar imóvel
+                   /*
                     Imovel novoImovel = new Imovel();
                     System.out.println("Qual é o endereço do imóvel?");
                     leitor.nextLine();
@@ -31,6 +80,7 @@ public class Main {
                     String leitorFuncionario = leitor.nextLine();
                     Funcionario novoFuncionario = new Funcionario(leitorFuncionario);
                     novoImovel.adicionarFuncionario(novoFuncionario);
+                    */
 
                     while (loopMorador) {
                         System.out.println("Digite o nome dos moradores, ao terminar digite Sair");
@@ -89,3 +139,5 @@ public class Main {
         }
     }
 }
+
+
