@@ -35,8 +35,8 @@ public abstract class Pessoa {
     @Override
     public String toString() {
         StringBuilder concatenador = new StringBuilder();
-        concatenador.append("\t|\tNome: " + getNome());
-        concatenador.append("\t-\tCpf: " + getCpf());
+        concatenador.append("\tNome: " + getNome());
+        concatenador.append("\t-\tCpf: " + getCpf() + "\t|");
         return concatenador.toString();
     }
 }
