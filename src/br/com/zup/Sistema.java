@@ -85,7 +85,9 @@ public class Sistema {
 
     public static void removerMorador(){
         String enderecoImovel = capturador("Qual é o endereço do imóvel").nextLine();
+        System.out.println();
         String cpfRemovido = capturador("Qual é o CPF do morador a ser removido").nextLine();
+        System.out.println();
         Morador excluido = null;
         for (Imovel referencia : imobiliaria.getImoveis()){
             if (enderecoImovel.equalsIgnoreCase(referencia.getEndereco())){
@@ -96,6 +98,7 @@ public class Sistema {
                 }
             }
             referencia.getMoradores().remove(excluido);
+            System.out.println("Morador " + excluido + " removido.");
         }
     }
 
