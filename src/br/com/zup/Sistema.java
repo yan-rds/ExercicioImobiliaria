@@ -31,9 +31,24 @@ public class Sistema {
         return novoFuncionario;
     }
 
+    public static String validarEmail() {
+         boolean emailValido = false;
+         String leitorEmail = "";
+         while (!emailValido) {
+              leitorEmail = capturador("Digite o email deste morador").nextLine();
+              if (leitorEmail.contains("@")) {
+                   emailValido = true;
+              } else {
+                   System.out.println("Digite um email válido");
+              }
+         }
+         return leitorEmail;
+    }
+
     public static Morador instanciarMorador(){
         String leitorMorador = capturador("Digite o nome do morador").nextLine();
         String leitorCpf = capturador("Digite o CPF deste morador").nextLine();
+        validarEmail();
         Morador novoMorador = new Morador();
         boolean cpfRepetido = false;
         for (Morador referencia : listaDeMoradores){
