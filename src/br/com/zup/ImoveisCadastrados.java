@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImoveisCadastrados {
-    private List <Imovel> imoveis = new ArrayList<>();
+    private List <Imovel> listaDeImoveis = new ArrayList<>();
 
     public ImoveisCadastrados() {
     }
 
-    public ImoveisCadastrados(List<Imovel> imoveis) {
-        this.imoveis = imoveis;
+    public ImoveisCadastrados(List<Imovel> listaDeImoveis) {
+        this.listaDeImoveis = listaDeImoveis;
     }
 
-    public List<Imovel> getImoveis() {
-        return imoveis;
+    public List<Imovel> getListaDeImoveis() {
+        return listaDeImoveis;
     }
 
-    public void setImoveis(List<Imovel> imoveis) {
-        this.imoveis = imoveis;
+    public void setListaDeImoveis(List<Imovel> listaDeImoveis) {
+        this.listaDeImoveis = listaDeImoveis;
     }
 
     public void adicionarImovel (Imovel adicionarImovel){
-        imoveis.add(adicionarImovel);
+        listaDeImoveis.add(adicionarImovel);
     }
     public void mostrarTodosOsImoveis(){
-        for (Imovel referencia : imoveis){
+        for (Imovel referencia : listaDeImoveis){
             System.out.println(referencia.toString());
         }
     }
@@ -34,7 +34,7 @@ public class ImoveisCadastrados {
     public String toString() {
         StringBuilder concatenador = new StringBuilder();
         concatenador.append("Lista de imóveis cadastrados:\n");
-        concatenador.append("\n" + imoveis.toString());
+        concatenador.append("\n" + listaDeImoveis.toString());
         return concatenador.toString();
     }
 }

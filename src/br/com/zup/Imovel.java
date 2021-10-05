@@ -6,10 +6,18 @@ import java.util.List;
 public class Imovel {
     private String endereco;
     private double valorAluguel;
-    private List <Morador> moradores = new ArrayList<>();
+    private List <Morador> listaDeMoradores = new ArrayList<>();
     private Funcionario funcionarioResponsavel;
 
     public Imovel() {
+    }
+
+    public List<Morador> getListaDeMoradores() {
+        return listaDeMoradores;
+    }
+
+    public void setListaDeMoradores(List<Morador> listaDeMoradores) {
+        this.listaDeMoradores = listaDeMoradores;
     }
 
     public Imovel(String endereco, double valorAluguel) {
@@ -34,15 +42,15 @@ public class Imovel {
     }
 
     public List<Morador> getMoradores() {
-        return moradores;
+        return listaDeMoradores;
     }
 
     public void setMoradores(List<Morador> moradores) {
-        this.moradores = moradores;
+        this.listaDeMoradores = moradores;
     }
 
     public void adicionarMorador (Morador novoMorador){
-        moradores.add(novoMorador);
+        listaDeMoradores.add(novoMorador);
     }
 
     public void adicionarFuncionario (Funcionario funcionarioAdicionado){
@@ -57,7 +65,7 @@ public class Imovel {
         endereco = enderecoEscolhido;
     }
     public void mostrarMoradores (){
-        for (Morador referencia : moradores){
+        for (Morador referencia : listaDeMoradores){
             System.out.println(referencia.getNome());
         }
     }

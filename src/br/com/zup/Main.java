@@ -16,8 +16,9 @@ public class Main {
             System.out.println("Sistema Imobiliário");
             System.out.println("Digite 1 para cadastrar um novo imóvel");
             System.out.println("Digite 2 para exibir todos os imóveis cadastrados");
-            System.out.println("Digite 3 para encerrar");
+            System.out.println("Digite 3 para remover um morador");
             int escolhaMenu = leitor.nextInt();
+            leitor.nextLine();
             switch (escolhaMenu) {
                 case 1:
                     // Cadastrar imóvel
@@ -33,14 +34,26 @@ public class Main {
                     novoImovel.adicionarFuncionario(funcionario);
 
                     while (loopMorador) {
-                        System.out.println("Digite o nome dos moradores, ao terminar digite Sair");
+                        System.out.println("Digite o nome dos moradores, caso não tenha digite Sair");
                         String leitorMorador = leitor.nextLine();
                         if (leitorMorador.equalsIgnoreCase("Sair")) {
                             loopMorador = false;
                         } else {
-                            Morador Novomorador = new Morador(leitorMorador);
-                            novoImovel.adicionarMorador(Novomorador);
-                            System.out.println("morador adicionado " + Novomorador.getNome());
+                            System.out.println("Por favor digite o CPF deste morador");
+                            String leitorCpf = leitor.nextLine();
+                            boolean cpfRepetido = false;
+                            for (Morador referencia : novoImovel.getListaDeMoradores()){
+                                if (referencia.getCpf().equalsIgnoreCase(leitorCpf)){
+                                    System.out.println("Cpf repetido, morador não será cadastrado.");
+
+
+                                }
+                            }
+                            if (cpfRepetido == false) { // cadastrador de morador
+                                Morador Novomorador = new Morador(leitorMorador, leitorCpf);
+                                novoImovel.adicionarMorador(Novomorador);
+                                System.out.println("morador adicionado " + Novomorador.getNome() + "\nCpf: " + Novomorador.getCpf());
+                            }
                         }
                     }
                     loopMorador = true;
@@ -55,8 +68,24 @@ public class Main {
                     System.out.println(imobiliaria);
                     break;
                 case 3:
-                    System.out.println("Encerrando");
-                    loopMenu = false;
+                    System.out.println("Qual é o endereço do imóvel que este morador reside?");
+                    String enderecoARemover = leitor.nextLine();
+                    System.out.println("Qual é o CPF deste morador?");
+                    String CpfARemover = leitor.nextLine();
+                    Morador excluido = null;
+                    for (Imovel referencia : imobiliaria.getListaDeImoveis()){
+                        if (referencia.getEndereco().equalsIgnoreCase(enderecoARemover)){
+                            for (Morador referenciaMorador : referencia.getListaDeMoradores()){
+                                if (referenciaMorador.getCpf().equals(CpfARemover)){
+                                    excluido = referenciaMorador;
+                                }
+
+                            }
+                        }
+                        referencia.getListaDeMoradores().remove(excluido);
+
+                    }
+                    System.out.println("O morador " + excluido.getNome() + " foi removido.");
 
             }
         }
