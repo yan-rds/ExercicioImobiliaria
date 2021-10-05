@@ -32,13 +32,24 @@ public class Sistema {
     }
 
     public static String validarEmail() {
-         boolean emailValido = false;
+         boolean emailRepetido = false;
+         boolean emailComArroba = false;
          String leitorEmail = "";
-         while (!emailValido) {
+         while (!emailComArroba | emailRepetido) {
               leitorEmail = capturador("Digite o email deste morador").nextLine();
               if (leitorEmail.contains("@")) {
-                   emailValido = true;
-              } else {
+                   emailComArroba = true;
+                   for (Morador referencia : listaDeMoradores){
+                       if (referencia.getEmail().equalsIgnoreCase(leitorEmail)){
+                           emailRepetido = true;
+                           System.out.println("Já existe um morador com este email");
+                       }
+                       else {
+                           emailRepetido = false;
+                       }
+                   }
+              }
+               else {
                    System.out.println("Digite um email válido");
               }
          }
@@ -48,7 +59,7 @@ public class Sistema {
     public static Morador instanciarMorador(){
         String leitorMorador = capturador("Digite o nome do morador").nextLine();
         String leitorCpf = capturador("Digite o CPF deste morador").nextLine();
-        validarEmail();
+        String leitorEmail = validarEmail();
         Morador novoMorador = new Morador();
         boolean cpfRepetido = false;
         for (Morador referencia : listaDeMoradores){
@@ -60,6 +71,7 @@ public class Sistema {
         if (!cpfRepetido) {
             novoMorador.setNome(leitorMorador);
             novoMorador.setCpf(leitorCpf);
+            novoMorador.setEmail(leitorEmail);
         }
         return novoMorador;
     }
